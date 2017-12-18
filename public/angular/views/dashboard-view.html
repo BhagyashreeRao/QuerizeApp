@@ -1,0 +1,109 @@
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand font-effect-fire-animation" href="#">Querize</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#/user/dashboard">Dashboard</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a ng-click="login.logout();" style="margin-right: 30px;">Logout</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+    </nav>
+	<div ng-show="login.loadme" class="querySection" >
+		<p class="nameHeader slideInLeft animated">Welcome {{login.username}}, </p>
+		<div class="container">
+			<hr ng-hide="login.isAdmin">
+			<div class="row slideInLeft animated" ng-hide="login.isAdmin">
+				<div class="col-md-3 col-xs-6 text-center">
+					<button class="btn btn-custom btn-block" ng-click="dashboard.showAll=true; dashboard.filter=false;">All queries </button>
+				</div>
+				<div class="col-md-3 col-xs-6 text-center">
+					<button class="btn btn-custom btn-block" ng-click=" dashboard.showAll=false; dashboard.filter=false;">My queries </button>	
+				</div>
+				<div class="col-md-3 col-xs-6 text-center">
+					<select class="option" ng-model="dashboard.isOpen" ng-click="dashboard.filter=true;">
+					<!-- <optgroup label="select status"> -->
+						<option selected disabled value="">---select status---</option>
+  						<option value="" >Both</option>
+  						<option value="true">OPEN</option>
+  						<option value="false">CLOSED</option>
+					</select>
+				</div>
+				<div class="col-md-3 col-xs-6 text-center">
+					<a class="btn btn-custom btn-block" ng-href="#/query/post/{{login.username}}">new POST</a>
+				</div>
+			</div>
+			<hr ng-hide="login.isAdmin">
+			<br>
+			<div class="row slideInLeft animated" ng-show="login.isAdmin">
+				<div class="col-md-4 col-xs-12 text-center">
+					<button class="btn btn-custom btn-block" ng-click="dashboard.showAll=true; dashboard.filter=false;">All queries </button>
+				</div>
+				<div class="col-md-4 col-xs-12 text-center">
+					<button class="btn btn-custom btn-block" ng-click="dashboard.showAll=true; dashboard.filter=true;dashboard.isOpen=true; ">Open queries </button>
+				</div>
+				<div class="col-md-4 col-xs-12 text-center">
+					<button class="btn btn-custom btn-block" ng-click="dashboard.showAll=true; dashboard.filter=true; dashboard.isOpen=false">Closed queries </button>
+				</div>				
+
+			</div>
+			<div ng-if="dashboard.showAll==true && dashboard.filter==false" >
+				<div ng-repeat='query in dashboard.allQueries' class="query-card wow bounceInUp" >
+					<a ng-href="#/query/get/{{query._id}}" >				
+					<span style="color: #2FBBFF; font-size: 20px;">{{query.title}}</span>
+					<span>by {{query.creator}} on {{query.created_on|date : 'medium'}} </span>
+					<p ng-if="query.open" style="float:right">Status:OPEN</p>
+					<p ng-if="!query.open" style="float:right">Status:CLOSED</p>
+					<!--<p>by {{query.creator}} on {{query.created_on|date : 'medium'}} </p> -->
+					</a>
+				</div>	
+			</div>
+
+			<div ng-if="dashboard.showAll==true && dashboard.filter==true">
+				<div ng-repeat='query in dashboard.allQueries|filter:{open:dashboard.isOpen}' class="query-card wow bounceInUp">
+					<a ng-href="#/query/get/{{query._id}}">				
+					<span style="color: #2FBBFF; font-size: 20px;">{{query.title}}</span>
+					<span>by {{query.creator}} on {{query.created_on|date : 'medium'}} </span>
+					<p ng-if="query.open" style="float:right">Status:OPEN</p>
+					<p ng-if="!query.open" style="float:right">Status:CLOSED</p>
+					<!--<p>by {{query.creator}} on {{query.created_on|date : 'medium'}} </p> -->
+					</a>
+				</div>	
+			</div>
+
+			<div ng-if="dashboard.showAll==false && dashboard.filter==false">
+				<div ng-repeat='query in dashboard.allQueries|filter:{creator:login.username}' class="query-card wow bounceInUp">
+					<a ng-href="#/query/get/{{query._id}}">				
+					<span style="color: #2FBBFF; font-size: 20px;">{{query.title}}</span>
+					<span>by {{query.creator}} on {{query.created_on|date : 'medium'}} </span>
+					<p ng-if="query.open" style="float:right">Status:OPEN</p>
+					<p ng-if="!query.open" style="float:right">Status:CLOSED</p>
+					<!--<p>by {{query.creator}} on {{query.created_on|date : 'medium'}} </p> -->
+					</a>
+				</div>	
+			</div>
+
+
+			<div ng-if="dashboard.showAll==false && dashboard.filter==true">
+				<div ng-repeat='query in dashboard.allQueries|filter:{creator:login.username,open: dashboard.isOpen}' class="query-card wow bounceInUp">
+					<a ng-href="#/query/get/{{query._id}}">				
+					<span style="color: #2FBBFF; font-size: 20px;">{{query.title}}</span>
+					<span>by {{query.creator}} on {{query.created_on|date : 'medium'}} </span>
+					<p ng-if="query.open" style="float:right">Status:OPEN</p>
+					<p ng-if="!query.open" style="float:right">Status:CLOSED</p>
+					<!--<p>by {{query.creator}} on {{query.created_on|date : 'medium'}} </p> -->
+					</a>
+				</div>	
+			</div>
+
+		</div>	
+		</div>
+	

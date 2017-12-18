@@ -1,0 +1,97 @@
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand font-effect-fire-animation" href="#">Querize</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#/user/dashboard">Dashboard</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="" ng-click="login.logout();" style="margin-right: 30px;">Logout</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+    </nav>
+
+<div ng-show="login.loadme" >
+	<div class="querySection">
+    <center><a ng-href="#/user/dashboard" style="font-size: 20px; color: #2FBBFF;"> &#8617; Back to dashboard</a></center> 
+    <hr>
+    <div class="container">
+      <div class="left wow fadeInLeft">
+        <p style="font-weight: bold; font-size: 20px;">posted by <span style="color: #2FBBFF; font-style: oblique;">{{query.queryDetails.creator}}</span>
+        </p>
+	 
+    		<p>{{query.queryDetails.created_on|date : 'medium'}}</p>
+      </div>
+      <div class="right wow fadeInRight">
+        <p ng-if="query.queryDetails.open==true" style="font-weight: bold;">Status:OPEN </p>
+        <p ng-if="query.queryDetails.open==false" style="font-weight: bold;">Status:CLOSED </p>
+        <div ng-if="login.isAdmin==true||login.username==query.queryDetails.creator">
+          <label class="switch" style="margin-bottom: 15px;">
+          <!-- <input type="checkbox" checked> -->
+            <input type="checkbox" ng-model="query.queryDetails.open" ng-change="query.changeQueryStatus();" />
+            <span class="slider round"></span>
+          </label>
+        </div>  
+      </div>
+    </div>
+
+    <br>
+
+    <div class="wow fadeInUp">
+    
+      <div class="box">
+
+        <div class="icon">
+          <a href=""><span style="color: white; font-size: 2em;"><i class="far fa-question-circle"></i></span>
+          </a>
+        </div>
+ 
+        <h4 class="title">{{query.queryDetails.title}}</h4>
+        <p class="description break_desc">{{query.queryDetails.description}}</p>
+
+      </div>
+     
+    </div>
+	</div>
+ 
+    <p style="font-size: 20px"><i class="far fa-comment"></i> Comments </p>
+    <hr>
+     <div class="wow bounceInUp" data-wow-delay="0.5s" ng-if="query.queryDetails.comments.length>0">
+      <div ng-repeat="comment in query.queryDetails.comments">
+       <div class="comment-section">
+        <p class="break">{{comment.postedBy}} : {{comment.comment}}</p>
+        <p style="float: right">on {{comment.posted_on | date:'medium'}}</p>
+        <br>
+        <br>
+       </div>
+     <hr>
+    </div> 
+  </div> 
+  <p ng-if="query.queryDetails.comments.length==0" style="font-size: 15px;">No answers yet!</p>
+  <br>
+  <div ng-if="query.queryDetails.open==true"> 
+	<p style="font-size: 15px;"> Your answer </p>
+	<form class="form wow zoomInUp" data-wow-delay="1s" ng-submit="query.postAnswer(login.username,query.comment)">
+    <div class="form-group">
+     
+        <textarea  rows="8" class="form-control" id="comment" placeholder="Write your answer " name="comment" ng-model="query.comment">
+        </textarea>
+    </div>
+
+    <div class="form-group">        
+        <button type="submit" class="btn btn-custom" style="float: right;">Post Answer!</button>
+    </div>
+  </form>
+  </div>
+  <div ng-if="query.queryDetails.open==false">
+    <p style="font-size: 20px;">This discussion has been closed. You can't post your answer </p> 
+  </div>  
+</div>
+
