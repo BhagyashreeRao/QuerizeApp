@@ -17,9 +17,11 @@
           </ul>
         </div><!--/.nav-collapse -->
     </nav>
+
 	<div ng-show="login.loadme" class="querySection" >
 		<p class="nameHeader slideInLeft animated">Welcome {{login.username}}, </p>
 		<div class="container">
+			<!-- query menu for users -->
 			<hr ng-hide="login.isAdmin">
 			<div class="row slideInLeft animated" ng-hide="login.isAdmin">
 				<div class="col-md-3 col-xs-6 text-center">
@@ -43,6 +45,7 @@
 			</div>
 			<hr ng-hide="login.isAdmin">
 			<br>
+			<!-- Query menu for admin -->
 			<div class="row slideInLeft animated" ng-show="login.isAdmin">
 				<div class="col-md-4 col-xs-12 text-center">
 					<button class="btn btn-custom btn-block" ng-click="dashboard.showAll=true; dashboard.filter=false;">All queries </button>
@@ -55,6 +58,7 @@
 				</div>				
 
 			</div>
+			<!-- Shows all queries -->
 			<div ng-if="dashboard.showAll==true && dashboard.filter==false" >
 				<div ng-repeat='query in dashboard.allQueries' class="query-card wow bounceInUp" >
 					<a ng-href="#/query/get/{{query._id}}" >				
@@ -66,7 +70,7 @@
 					</a>
 				</div>	
 			</div>
-
+			<!-- Show all queries with filters -->
 			<div ng-if="dashboard.showAll==true && dashboard.filter==true">
 				<div ng-repeat='query in dashboard.allQueries|filter:{open:dashboard.isOpen}' class="query-card wow bounceInUp">
 					<a ng-href="#/query/get/{{query._id}}">				
@@ -78,7 +82,7 @@
 					</a>
 				</div>	
 			</div>
-
+			<!-- Show user's query -->
 			<div ng-if="dashboard.showAll==false && dashboard.filter==false">
 				<div ng-repeat='query in dashboard.allQueries|filter:{creator:login.username}' class="query-card wow bounceInUp">
 					<a ng-href="#/query/get/{{query._id}}">				
@@ -90,7 +94,7 @@
 					</a>
 				</div>	
 			</div>
-
+			<!-- Show user's query with filter -->
 
 			<div ng-if="dashboard.showAll==false && dashboard.filter==true">
 				<div ng-repeat='query in dashboard.allQueries|filter:{creator:login.username,open: dashboard.isOpen}' class="query-card wow bounceInUp">

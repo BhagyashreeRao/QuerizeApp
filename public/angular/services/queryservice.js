@@ -11,10 +11,6 @@ myApp.factory('Query', function($http) {
 			return $http.get('/query/all');
 		};
 
-/*		queryFactory.getQueriesOfCurrentUser = function(currentUser){
-			return $http.get('/query/all/'+ currentUser);
-		};*/
-
 		queryFactory.getQueryDetails = function(queryId){
 			return $http.get('/query/get/'+queryId);
 		};

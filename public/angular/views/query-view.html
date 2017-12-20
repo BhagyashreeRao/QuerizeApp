@@ -34,7 +34,6 @@
         <p ng-if="query.queryDetails.open==false" style="font-weight: bold;">Status:CLOSED </p>
         <div ng-if="login.isAdmin==true||login.username==query.queryDetails.creator">
           <label class="switch" style="margin-bottom: 15px;">
-          <!-- <input type="checkbox" checked> -->
             <input type="checkbox" ng-model="query.queryDetails.open" ng-change="query.changeQueryStatus();" />
             <span class="slider round"></span>
           </label>

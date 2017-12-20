@@ -37,7 +37,7 @@ myApp.controller('mainCtrl',['$http', '$location', '$timeout', 'User', '$route',
             main.reset($scope.signupForm,"signupForm");
 
             };
-
+            //function to reset modal form
             this.reset=function(form,name){
             document.getElementById(name).reset();
             form.$setPristine();

@@ -8,7 +8,7 @@ var responseGenerator = require('./../../libs/responseGenerator');
 
 var jwt = require('jsonwebtoken');
 var expressJwt = require('express-jwt');
-var secret = 'harrypotter';
+var secret = 'QWERTYUIOPASDFGHJKLZXCVBNM1234567890';
 
 
 module.exports.controllerFunction = function(app) {
@@ -30,8 +30,7 @@ module.exports.controllerFunction = function(app) {
 
 
     userRouter.post('/signup',function(req,res){
-      console.log(req.body);
- //     console.log(req);
+
 
         if(req.body.username!=undefined && req.body.mobilenumber!=undefined && req.body.email!=undefined && req.body.password!=undefined){
 
@@ -44,7 +43,7 @@ module.exports.controllerFunction = function(app) {
 
 
             });// end new user 
-            console.log(newUser);
+            
 
             newUser.save(function(err){
                 if(err){
@@ -57,7 +56,7 @@ module.exports.controllerFunction = function(app) {
 
                     //var myResponse = responseGenerator.generate(false,"successfully signup user",200,newUser);
                    // res.send(myResponse);
-                   console.log(newUser);
+                   
 
                 var token=jwt.sign({username:newUser.username,email:newUser.email},secret,{expiresIn:'24h'});
                 var myResponse = responseGenerator.generate(false,"User created successfully ! ",201,token);
@@ -66,7 +65,7 @@ module.exports.controllerFunction = function(app) {
             });//end new user save
        }
         else{
-          //console.log(req.body);
+          
            var myResponse = responseGenerator.generate(true,"Ensure username, email, and password were provided",400,null);
               res.json(myResponse);
 

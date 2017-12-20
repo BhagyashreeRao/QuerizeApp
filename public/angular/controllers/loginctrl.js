@@ -66,6 +66,7 @@ myApp.controller('loginCtrl',['$http', '$location','$rootScope', '$timeout', 'Au
 
         };
 
+         //function to reset the modal form   
         this.reset=function(form,name){
             document.getElementById(name).reset();
             form.$setPristine();

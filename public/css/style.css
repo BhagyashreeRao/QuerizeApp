@@ -1,10 +1,11 @@
 html,body{
   margin: 0;
-  padding: 0;
+  padding: 0; 
   overflow-x: hidden;
 }
 
 body{
+    padding-right: 0!important;
     background-image: url('background.png') !important;
     background-position: center center !important;
     background-attachment: fixed;

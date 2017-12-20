@@ -8,20 +8,6 @@
 <br>
 <br>
 <br>
-
-<!-- <button class="btn" ng-click="login.logout();"> logout </button> -->
-<!--  
-<div ng-controller="mainCtrl" ng-cloak md-theme="{{theme}}" class="container">
-  <p class="inset">
-    We have an interval that changes the color of the button from <code>red</code> to <code>blue</code> themes,
-    Open the dialog to see the theme being inherited to the dialog and any component inside
-  </p>
-  <md-button class="md-primary md-raised" ng-click="showLogin($event)">Login</md-button>
-<br>
-<br>
-    <md-button class="md-primary md-raised" ng-click="showSignup($event)">Register</md-button>
-</div> 
--->
 <br>
 <div class="container">
   <div class="row">
@@ -32,7 +18,7 @@
       </button>
     </div>
 
-    <!-- Modal -->
+    <!--Signup Modal -->
     <div class="modal rotateIn animated" id="modalSignupForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -91,18 +77,14 @@
         </div>
 
       </div>
-<!--       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div> -->
+
     </div>
   </div>
 </div>
 
 
 
-<!-- <div class="container">
-<div class="row"> --> 
+
     <div class="col-md-offset-1 col-md-4 text-center wow slideInRight animated" >
       <p>Welcome back amigo! Login to start asking your questions or helping others with answers</p>
       <button type="button" class="btn btn-lg btn-warning" data-toggle="modal" data-target="#modalLoginForm" style="margin-bottom: 50px;">
@@ -112,7 +94,7 @@
 
 
 
-    <!-- Modal -->
+    <!--Login Modal -->
     <div class="modal rotateIn animated" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -129,26 +111,16 @@
                 <label for="email">Email:</label>
                 <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" ng-model="login.loginData.email" required="true">
               </div>
-<!--     <div class="form-group">
-      <label for="username">username:</label>
-      <input type="text" class="form-control" id="username" placeholder="Enter username" name="username" ng-model="main.userData.username" required="true" >
-    </div>
-    <div class="form-group">
-      <label for="mobilenumber">mobile number:</label>
-      <input type="number" class="form-control" id="mobilenumber" placeholder="Enter mobile number" name="mobilenumber" ng-model="main.userData.mobilenumber" required="true" >
-    </div> -->
 
-    <div class="form-group">
-      <label for="pwd">Password:</label>
-      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" ng-model="login.loginData.password" required="true">
-    </div>
+              <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" ng-model="login.loginData.password" required="true">
+              </div>
 
-<!--     <div class="checkbox">
-      <label><input type="checkbox" name="remember"> Remember me</label>
-    </div> -->
-    <button type="submit" class="btn btn-warning">Log in!</button>
 
-  </form>
+              <button type="submit" class="btn btn-warning">Log in!</button>
+
+          </form>
 
 
   <br>
@@ -176,10 +148,6 @@
 </div>
 
       </div>
-  <!--<div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div> -->
     </div>
   </div>
 </div>

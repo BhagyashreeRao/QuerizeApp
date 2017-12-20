@@ -11,6 +11,7 @@ var sendMail = require('./../../libs/sendMail');
 
 module.exports.controllerFunction = function(app) {
 
+    //get all queries
     queryRouter.get('/all',function(req,res){
         queryModel.find({},function(err,allQueries){
             if(err){                
@@ -30,18 +31,19 @@ module.exports.controllerFunction = function(app) {
         });//end user model find 
 
     });//end get all users
-
+    
+    //get queries of cuurrentuser
     queryRouter.get('/all/:currentuser',function(req,res){
         queryModel.find({'creator':req.params.currentuser},function(err,allQueries){
             if(err){                
                 var myResponse = responseGenerator.generate(true,"Can't fetch queries due to some error",400,null);
-                    //res.json({ success: false, message: 'Username or Email already exists!' }); // Cannot save if username or email exist in the database
+                   
                 res.json(myResponse);
             }
             else{
 
                 var myResponse = responseGenerator.generate(false,"Queries fetched ",201,allQueries);
-                    //res.json({ success: false, message: 'Username or Email already exists!' }); // Cannot save if username or email exist in the database
+                   
                 res.json(myResponse);
 
             }
@@ -50,6 +52,7 @@ module.exports.controllerFunction = function(app) {
 
     });//end get all users
 
+    //get details of a query
     queryRouter.get('/get/:queryId',function(req,res){
         queryModel.find({'_id':req.params.queryId},function(err,query){
             if(err){
@@ -63,7 +66,7 @@ module.exports.controllerFunction = function(app) {
         });
     });
 
-
+    //post a query
     queryRouter.post('/post/:currentuser',function(req,res){
 
 
@@ -88,9 +91,6 @@ module.exports.controllerFunction = function(app) {
                     res.json(myResponse);
               }
               else{
-
-                    //var myResponse = responseGenerator.generate(false,"successfully signup user",200,newUser);
-                   // res.send(myResponse);
                    
                 var myResponse = responseGenerator.generate(false,"Query posted successfully ! ",201,null);
                 res.json(myResponse);
@@ -107,7 +107,7 @@ module.exports.controllerFunction = function(app) {
        
     });//end post query
 
-
+    //post a comment on a query
     queryRouter.post('/comment/:queryId',function(req,res)
 
         {   
@@ -143,7 +143,7 @@ module.exports.controllerFunction = function(app) {
 
         });
 
-
+    //change status of query
     queryRouter.post('/change_status/:queryId',function(req,res)
 
         {    
@@ -200,10 +200,7 @@ module.exports.controllerFunction = function(app) {
 
         });
 
-
-    // this should be the last line
-    // now making it global to app using a middleware
-    // think of this as naming your api 
+ 
     app.use('/query', queryRouter);
 }; //end contoller code
 
